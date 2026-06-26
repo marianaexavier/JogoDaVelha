@@ -36,6 +36,10 @@ void desenha() {
     }
 }
 
+int posicaoLivre (int linha, int coluna) {
+    return M[linha][coluna] == VAZIO;
+}
+
 int  marcaJogada(int linha, int coluna, int tipo) {
     M[linha][coluna] = tipo;
     totalJogadas++;
@@ -43,7 +47,7 @@ int  marcaJogada(int linha, int coluna, int tipo) {
 
 int  temVencedor() {
     int i, soma;
-
+ 
     for (i = 0; i < 3; i++) {
         soma = M[i][0] + M[i][1] + M[i][2];
         if (soma == 3) {

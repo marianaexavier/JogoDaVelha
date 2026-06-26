@@ -7,6 +7,7 @@
 
 void inicializaTabuleiro();
 void desenha();
+int posicaoLivre (int linha, int coluna);
 int  marcaJogada(int linha, int coluna, int tipo);
 int  temVencedor();
 
