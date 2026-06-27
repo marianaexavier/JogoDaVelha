@@ -3,14 +3,31 @@
 #include "Tabuleiro.h"
 #include "JogadorTeclado.h"
 
+static char primeiroJogador;
+
 void configuraJogadores() {
     printf("==== JOGO DA VELHA ====\n");
-    printf("Jogador 1 = X | Jogador 2 = O\n\n");
+
+    do {
+        printf("Qual jogador (X ou O) ira comecar? ");
+        scanf(" %c", &primeiroJogador);
+        if (primeiroJogador != 'X' && primeiroJogador != 'O') {
+            printf("\nEscolha invalida. Tente Novamente.\n");
+            continue;
+        }
+        break;
+    } while (1);
 }
 
 void inicia() {
-    int jogadorAtual = X;
+    int jogadorAtual;
     int vencedor;
+
+    if (primeiroJogador == 'X') {
+        jogadorAtual = X;
+    } else {
+        jogadorAtual = O;
+    }
 
     inicializaTabuleiro();
 
