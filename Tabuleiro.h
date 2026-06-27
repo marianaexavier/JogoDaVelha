@@ -1,13 +1,17 @@
 #ifndef TABULEIRO_H
 #define TABULEIRO_H
 
-#define VAZIO 0
-#define O     1
-#define X     4
+typedef enum {
+    VAZIO  = 0,
+    O      = 1,
+    X      = 4,
+    EMPATE = 2
+} Representacao;
 
 void inicializaTabuleiro();
 void desenha();
-int  marcaJogada(int linha, int coluna, int tipo);
-int  temVencedor();
+int posicaoDisponivel(int linha, int coluna);
+void marcaJogada(int linha, int coluna, int tipo);
+int temVencedor();
 
 #endif
