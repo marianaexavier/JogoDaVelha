@@ -31,7 +31,7 @@ void inicia() {
             break;
         }
 
-        if (vencedor == 2) {
+        if (vencedor == EMPATE) {
             desenha();
             printf("\nEMPATE!\n");
             break;
