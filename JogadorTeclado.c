@@ -3,16 +3,12 @@
 #include "Tabuleiro.h"
 
 static char distinguirJogador(int tipo) {
-    if (tipo == X) {
-        return 'X';
-    } else {
-        return 'O';
-    }
+    if (tipo == X) return 'X';
+    return 'O';
 }
 
 void joga(int tipo) {
     int linha, coluna;
-    int sucesso;
 
     do {
     printf("Jogador %c, digite a linha e a coluna (1 a 3): ", distinguirJogador(tipo));
@@ -20,10 +16,10 @@ void joga(int tipo) {
     linha--;
     coluna--;
 
-    if (!posicaoLivre(linha, coluna)) {
-        printf("Posição já ocupada. Tente novamente.\n");
+    if (!posicaoDisponivel(linha, coluna)) {
+        printf("Posicao indisponivel. Tente novamente.\n");
     }
-    } while (!posicaoLivre(linha, coluna));
+    } while (!posicaoDisponivel(linha, coluna));
     
     marcaJogada(linha, coluna, tipo);
 }

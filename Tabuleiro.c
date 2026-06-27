@@ -36,49 +36,42 @@ void desenha() {
     }
 }
 
-int posicaoLivre (int linha, int coluna) {
+int posicaoDisponivel(int linha, int coluna) {
+    if (linha < 0 || linha > 2 || coluna < 0 || coluna > 2)
+        return 0;
+        
     return M[linha][coluna] == VAZIO;
 }
 
-int  marcaJogada(int linha, int coluna, int tipo) {
+void marcaJogada(int linha, int coluna, int tipo) {
     M[linha][coluna] = tipo;
     totalJogadas++;
 }
 
-int  temVencedor() {
+int temVencedor() {
     int i, soma;
  
     for (i = 0; i < 3; i++) {
         soma = M[i][0] + M[i][1] + M[i][2];
-        if (soma == 3) {
-            return O;
-        } else if (soma == 12) {
-            return X;
-        }
+        if (soma == 3) return O;
+        if (soma == 12) return X;
     }
 
     for (i = 0; i < 3; i++) {
         soma = M[0][i] + M[1][i] + M[2][i];
-        if (soma == 3) {
-            return O;
-        } else if (soma == 12) {
-            return X;
-        }
+        if (soma == 3) return O;
+        if (soma == 12) return X;
     }
 
     soma = M[0][0] + M[1][1] + M[2][2];
-    if (soma == 3) {
-        return O;
-    }
+    if (soma == 3) return O;
     if (soma == 12) return X;
 
     soma = M[0][2] + M[1][1] + M[2][0];
-    if (soma == 3)  return O;
+    if (soma == 3) return O;
     if (soma == 12) return X;
 
-    if (totalJogadas == 9) {
-        return 2;
-    } else {
-        return VAZIO;
-    }
+    if (totalJogadas == 9) return EMPATE;
+    
+    return VAZIO;
 }
