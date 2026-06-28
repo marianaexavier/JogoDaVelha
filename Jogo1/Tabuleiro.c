@@ -14,13 +14,9 @@ void inicializaTabuleiro() {
 }
 
 static char simbolo(int valor) {
-    if (valor == O) {
-        return 'O';
-    } else if (valor == X) {
-        return 'X';
-    } else {
-        return ' ';
-    }
+    if (valor == O) return 'O';
+    if (valor == X) return 'X';
+    return ' ';
 }
 
 void desenha() {
