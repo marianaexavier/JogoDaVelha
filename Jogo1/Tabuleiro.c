@@ -70,4 +70,8 @@ int temVencedor() {
     if (totalJogadas == 9) return EMPATE;
     
     return VAZIO;
+<<<<<<< HEAD:Jogo1/Tabuleiro.c
 }
+=======
+}
+>>>>>>> 3a427605c32a039c5d9b0ef153c0cd359a5870af:Tabuleiro.c
