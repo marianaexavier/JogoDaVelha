@@ -9,7 +9,7 @@ void configuraJogadores() {
     printf("==== JOGO DA VELHA ====\n");
 
     do {
-        printf("Qual jogador (X ou O) ira comecar? ");
+        printf("Qual jogador ira comecar (X ou O)? ");
         scanf(" %c", &primeiroJogador);
         if (primeiroJogador != 'X' && primeiroJogador != 'O') {
             printf("\nEscolha invalida. Tente Novamente.\n");
@@ -38,13 +38,13 @@ void inicia() {
         vencedor = temVencedor();
         if (vencedor == X) {
             desenha();
-            printf("\nO jogador 1 (X) venceu!\n");
+            printf("\nO jogador 'X' venceu!\n");
             break;
         }
 
         if (vencedor == O) {
             desenha();
-            printf("\nO jogador 2 (O) venceu!\n");
+            printf("\nO jogador 'O' venceu!\n");
             break;
         }
 
