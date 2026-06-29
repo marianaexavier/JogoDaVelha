@@ -13,10 +13,8 @@ void configuraJogadores() {
         scanf(" %c", &primeiroJogador);
         if (primeiroJogador != 'X' && primeiroJogador != 'O') {
             printf("\nEscolha invalida. Tente Novamente.\n");
-            continue;
         }
-        break;
-    } while (1);
+    } while (primeiroJogador != 'X' && primeiroJogador != 'O');
 }
 
 void inicia() {
