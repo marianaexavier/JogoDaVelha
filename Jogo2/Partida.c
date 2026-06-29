@@ -2,21 +2,41 @@
 #include "Partida.h"
 #include "Tabuleiro.h"
 #include "JogadorTeclado.h"
+#include "JogadorIA.h"
 
 static char primeiroJogador;
+static int escolha;
 
 void configuraJogadores() {
     printf("==== JOGO DA VELHA ====\n");
+    printf("(1) JOGAR LOCALMENTE\n");
+    printf("(2) JOGAR CONTRA UMA IA\n");
 
     do {
-        printf("Qual jogador (X ou O) ira comecar? ");
-        scanf(" %c", &primeiroJogador);
-        if (primeiroJogador != 'X' && primeiroJogador != 'O') {
+        printf("Digite sua escolha: ");
+        scanf("%d", &escolha);
+
+        if (escolha != 1 && escolha != 2) {
             printf("\nEscolha invalida. Tente Novamente.\n");
-            continue;
         }
+    } while (escolha != 1 && escolha != 2);
+
+    switch(escolha) {
+        case 1:
+        do {
+            printf("\nQual jogador ira comecar (X ou O)? ");
+            scanf(" %c", &primeiroJogador);
+
+            if (primeiroJogador != 'X' && primeiroJogador != 'O') {
+                printf("\nEscolha invalida. Tente Novamente.\n");
+            }
+        } while (primeiroJogador != 'X' && primeiroJogador != 'O');
         break;
-    } while (1);
+
+        case 2:
+        primeiroJogador = 'X';
+        break;
+    }    
 }
 
 void inicia() {
@@ -24,16 +44,30 @@ void inicia() {
     int vencedor;
 
     if (primeiroJogador == 'X') {
-        jogadorAtual = X;
+    jogadorAtual = X;
     } else {
-        jogadorAtual = O;
+    jogadorAtual = O;
     }
 
     inicializaTabuleiro();
 
     while (1) {
         desenha();
-        joga(jogadorAtual);
+
+        switch(escolha) {
+            case 1:
+            joga(jogadorAtual);
+            break;
+
+            case 2:
+            if (jogadorAtual == X) {
+                joga(jogadorAtual);
+            } else {
+                jogaIA(jogadorAtual);
+            }
+            break;
+        }
+        
 
         vencedor = temVencedor();
         if (vencedor == X) {
