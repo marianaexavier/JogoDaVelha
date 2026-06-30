@@ -6,13 +6,18 @@ typedef enum {
     O      = 1,
     X      = 4,
     EMPATE = 2
-} Representacao;
+} valorRep;
 
-void inicializaTabuleiro();
-void desenha();
-int posicaoDisponivel(int linha, int coluna);
-void marcaJogada(int linha, int coluna, int tipo);
-int temVencedor();
-int consultarTabuleiro(int linha, int coluna);
+typedef struct {
+    int M[3][3];
+    int totalJogadas;
+} Tabuleiro;
+ 
+void inicializaTabuleiro(Tabuleiro *tab);
+void desenha(Tabuleiro *tab);
+int posicaoDisponivel(Tabuleiro *tab, int linha, int coluna);
+void marcaJogada(Tabuleiro *tab, int linha, int coluna, int tipo);
+int temVencedor(Tabuleiro *tab);
+int consultarTabuleiro(Tabuleiro *tab, int linha, int coluna);
 
 #endif

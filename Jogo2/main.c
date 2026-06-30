@@ -1,9 +1,11 @@
-#include <stdio.h>
 #include "Partida.h"
 
 int main() {
-    configuraJogadores();
-    inicia();
+    int escolha;
+    char primeiroJogador;
+
+    configuraJogadores(&escolha, &primeiroJogador);
+    inicia(escolha, primeiroJogador);
 
     return 0;
 }

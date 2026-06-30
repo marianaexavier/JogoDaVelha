@@ -3,61 +3,79 @@
 #include "Tabuleiro.h"
 #include "JogadorTeclado.h"
 
-static char primeiroJogador;
-
-void configuraJogadores() {
+void configuraJogadores(int *escolha, char *primeiroJogador) {
     printf("==== JOGO DA VELHA ====\n");
+    printf("(1) JOGAR LOCALMENTE\n");
+    printf("(2) JOGAR CONTRA UMA IA\n");
 
     do {
-        printf("Qual jogador (X ou O) ira comecar? ");
-        scanf(" %c", &primeiroJogador);
-        if (primeiroJogador != 'X' && primeiroJogador != 'O') {
+        printf("\nDigite sua escolha: ");
+        scanf("%d", escolha);
+
+        if (*escolha != 1 && *escolha != 2) {
             printf("\nEscolha invalida. Tente Novamente.\n");
-            continue;
         }
+    } while (*escolha != 1 && *escolha != 2);
+
+    switch(*escolha) {
+        case 1:
+        do {
+            printf("\nQual jogador ira comecar (X ou O)? ");
+            scanf(" %c", primeiroJogador);
+
+            if (*primeiroJogador != 'X' && *primeiroJogador != 'O') {
+                printf("\nEscolha invalida. Tente Novamente.\n");
+            }
+        } while (*primeiroJogador != 'X' && *primeiroJogador != 'O');
         break;
-    } while (1);
+    }    
 }
 
-void inicia() {
-    int jogadorAtual;
+void inicia(int escolha, char primeiroJogador) {
+    Jogador jogadorAtual;
+    Tabuleiro tab;
     int vencedor;
 
     if (primeiroJogador == 'X') {
-        jogadorAtual = X;
+    jogadorAtual.tipo = X;
     } else {
-        jogadorAtual = O;
+    jogadorAtual.tipo = O;
     }
 
-    inicializaTabuleiro();
+    inicializaTabuleiro(&tab);
 
     while (1) {
-        desenha();
-        joga(jogadorAtual);
+        desenha(&tab);
 
-        vencedor = temVencedor();
+        switch(escolha) {
+            case 1:
+            joga(&tab, jogadorAtual.tipo);
+            break;
+        }
+
+        vencedor = temVencedor(&tab);
         if (vencedor == X) {
-            desenha();
+            desenha(&tab);
             printf("\nO jogador 'X' venceu!\n");
             break;
         }
 
         if (vencedor == O) {
-            desenha();
+            desenha(&tab);
             printf("\nO jogador 'O' venceu!\n");
             break;
         }
 
         if (vencedor == EMPATE) {
-            desenha();
+            desenha(&tab);
             printf("\nEMPATE!\n");
             break;
         }
 
-        if (jogadorAtual == X) {
-            jogadorAtual = O;
+        if (jogadorAtual.tipo == X) {
+            jogadorAtual.tipo = O;
         } else {
-            jogadorAtual = X;
+            jogadorAtual.tipo = X;
         }
     }
 }
