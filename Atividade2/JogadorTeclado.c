@@ -7,7 +7,7 @@ static char distinguirJogador(int tipo) {
     return 'O';
 }
 
-void joga(int tipo) {
+void joga(Tabuleiro *tab, int tipo) {
     int linha, coluna;
 
     do {
@@ -16,10 +16,10 @@ void joga(int tipo) {
     linha--;
     coluna--;
 
-    if (!posicaoDisponivel(linha, coluna)) {
+    if (!posicaoDisponivel(tab, linha, coluna)) {
         printf("Posicao indisponivel. Tente novamente.\n");
     }
-    } while (!posicaoDisponivel(linha, coluna));
+    } while (!posicaoDisponivel(tab, linha, coluna));
     
-    marcaJogada(linha, coluna, tipo);
+    marcaJogada(tab, linha, coluna, tipo);
 }
