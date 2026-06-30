@@ -18,6 +18,5 @@ void desenha(Tabuleiro *tab);
 int posicaoDisponivel(Tabuleiro *tab, int linha, int coluna);
 void marcaJogada(Tabuleiro *tab, int linha, int coluna, int tipo);
 int temVencedor(Tabuleiro *tab);
-int consultarTabuleiro(Tabuleiro *tab, int linha, int coluna);
 
 #endif
