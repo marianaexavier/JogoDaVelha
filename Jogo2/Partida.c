@@ -2,6 +2,7 @@
 #include "Partida.h"
 #include "Tabuleiro.h"
 #include "JogadorTeclado.h"
+#include "JogadorIA.h"
 
 void configuraJogadores(int *escolha, char *primeiroJogador) {
     printf("==== JOGO DA VELHA ====\n");
@@ -28,18 +29,35 @@ void configuraJogadores(int *escolha, char *primeiroJogador) {
             }
         } while (*primeiroJogador != 'X' && *primeiroJogador != 'O');
         break;
+
+        case 2:
+        do {
+            printf("\nQual simbolo voce quer ser (X ou O)? ");
+            scanf(" %c", primeiroJogador);
+
+            if (*primeiroJogador != 'X' && *primeiroJogador != 'O') {
+                printf("\nEscolha invalida. Tente Novamente.\n");
+            }
+        } while (*primeiroJogador != 'X' && *primeiroJogador != 'O');
+        break;
+
+        case 3:
+        *primeiroJogador = 'X';
     }    
 }
 
 void inicia(int escolha, char primeiroJogador) {
     Jogador jogadorAtual;
+    JogadorIA jogadorIA;
     Tabuleiro tab;
     int vencedor;
 
     if (primeiroJogador == 'X') {
-    jogadorAtual.tipo = X;
+        jogadorAtual.tipo = X;
+        jogadorIA.tipo = O;
     } else {
-    jogadorAtual.tipo = O;
+        jogadorAtual.tipo = O;
+        jogadorIA.tipo = X;
     }
 
     inicializaTabuleiro(&tab);
@@ -50,6 +68,14 @@ void inicia(int escolha, char primeiroJogador) {
         switch(escolha) {
             case 1:
             joga(&tab, jogadorAtual.tipo);
+            break;
+
+            case 2:
+            if (jogadorAtual.tipo != jogadorIA.tipo) {
+                joga(&tab, jogadorAtual.tipo);
+            } else {
+                jogaIA(&tab, jogadorIA.tipo);
+            }
             break;
         }
 
