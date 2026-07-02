@@ -2,7 +2,7 @@
 #include "JogadorIA.h"
 #include "Tabuleiro.h"
 
-void jogaIA(Tabuleiro *tab, int tipo) {
+void jogaIA(Tabuleiro *tab, int tipo, int tipoHumano) {
     if (regra1(&tab, tipo)) return;
     if (regra2(&tab, tipo)) return;
     if (regra3(&tab, tipo)) return;
