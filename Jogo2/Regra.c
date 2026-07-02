@@ -56,7 +56,53 @@ int regra1(Tabuleiro *tab, int tipo, int tipoHumano) {
 }
 
 int regra2(Tabuleiro *tab, int tipo, int tipoHumano) {
+    int i, j, r, c, k, sequencias;
+    
+    int alvos[2] = {2 * tipo, 2 * tipoHumano};
+    int pecaTeste[2] = {tipo, tipoHumano};
+    
+    Tabuleiro tabCopia; 
 
+    for (k = 0; k < 2; k++) {
+        int alvo = alvos[k];
+        int peca = pecaTeste[k];
+
+        for (i = 0; i < 3; i++) {
+            for (j = 0; j < 3; j++) {
+                if (posicaoDisponivel(tab, i, j)) {
+                    tabCopia = *tab;
+                    
+                    marcaJogada(&tabCopia, i, j, peca); 
+                    sequencias = 0;
+
+                    for (r = 0; r < 3; r++) {
+                        if (tabCopia.M[r][0] + tabCopia.M[r][1] + tabCopia.M[r][2] == alvo) {
+                            sequencias++;
+                        }
+                    }
+                    
+                    for (c = 0; c < 3; c++) {
+                        if (tabCopia.M[0][c] + tabCopia.M[1][c] + tabCopia.M[2][c] == alvo) {
+                            sequencias++;
+                        }
+                    }
+                    
+                    if (tabCopia.M[0][0] + tabCopia.M[1][1] + tabCopia.M[2][2] == alvo) {
+                        sequencias++;
+                    }
+                    if (tabCopia.M[0][2] + tabCopia.M[1][1] + tabCopia.M[2][0] == alvo) {
+                        sequencias++;
+                    }
+
+                    if (sequencias >= 2) {
+                        marcaJogada(tab, i, j, tipo);
+                        return 1;
+                    }
+                }
+            }
+        }
+    }
+    return 0; 
 }
 
 int regra3(Tabuleiro *tab, int tipo) {
@@ -94,6 +140,7 @@ int regra5(Tabuleiro *tab, int tipo) {
         for (j = 0; j < 3; j += 2) {
             if (posicaoDisponivel(tab, i, j)) {
                 marcaJogada(tab, i, j, tipo);
+                return 1;
             }
         }
     }

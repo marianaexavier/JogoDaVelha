@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "JogadorIA.h"
 #include "Tabuleiro.h"
+#include "Regra.h"
 
 void jogaIA(Tabuleiro *tab, int tipo, int tipoHumano) {
     if (regra1(tab, tipo, tipoHumano)) return;
