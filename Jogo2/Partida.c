@@ -4,7 +4,7 @@
 #include "JogadorTeclado.h"
 #include "JogadorIA.h"
 
-void configuraJogadores(int *escolha, char *primeiroJogador) {
+void configuraJogadores(char *primeiroJogador) {
     printf("==== JOGO DA VELHA CONTRA IA====\n");
 
     do {
@@ -17,7 +17,7 @@ void configuraJogadores(int *escolha, char *primeiroJogador) {
     } while (*primeiroJogador != 'X' && *primeiroJogador != 'O');
 }
 
-void inicia(int escolha, char primeiroJogador) {
+void inicia(char primeiroJogador) {
     Jogador jogadorAtual;
     JogadorIA jogadorIA;
     Tabuleiro tab;

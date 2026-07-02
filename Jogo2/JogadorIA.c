@@ -2,12 +2,11 @@
 #include "JogadorIA.h"
 #include "Tabuleiro.h"
 
-static char distinguirJogador(int tipo) {
-    if (tipo == X) return 'X';
-    return 'O';
-}
-
-
 void jogaIA(Tabuleiro *tab, int tipo) {
-
+    if (regra1(&tab, tipo)) return;
+    if (regra2(&tab, tipo)) return;
+    if (regra3(&tab, tipo)) return;
+    if (regra4(&tab, tipo)) return;
+    if (regra5(&tab, tipo)) return;
+    regra6(&tab, tipo);
 }
