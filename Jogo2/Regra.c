@@ -2,3 +2,6 @@
 #include "JogadorIA.h"
 #include "Tabuleiro.h"
 
+int regra1(){
+
+}
