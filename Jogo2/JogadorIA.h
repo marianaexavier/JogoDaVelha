@@ -1,10 +1,7 @@
 #ifndef JOGADORIA_H
 #define JOGADORIA_H
-#include "Tabuleiro.h"
 
-typedef struct {
-    int tipo;
-} JogadorIA;
+#include "Tabuleiro.h"
 
 void jogaIA(Tabuleiro *tab, int tipo, int tipoHumano);
 

@@ -1,5 +1,6 @@
 #ifndef REGRA_H
 #define REGRA_H
+
 #include "Tabuleiro.h"
 
 int regra1(Tabuleiro *tab, int tipo, int tipoHumano);

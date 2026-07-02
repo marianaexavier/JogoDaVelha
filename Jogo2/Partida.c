@@ -18,18 +18,17 @@ void configuraJogadores(char *primeiroJogador) {
 }
 
 void inicia(char primeiroJogador) {
-    Jogador jogadorHumano;
-    JogadorIA jogadorIA;
     Tabuleiro tab;
+    int jogadorHumano, jogadorIA;
     int jogadorAtual, vencedor;
 
     if (primeiroJogador == 'X') {
-        jogadorHumano.tipo = X;
-        jogadorIA.tipo = O;
+        jogadorHumano = X;
+        jogadorIA = O;
         jogadorAtual = X;
     } else {
-        jogadorHumano.tipo = O;
-        jogadorIA.tipo = X;
+        jogadorHumano = O;
+        jogadorIA = X;
         jogadorAtual = O;
     }
 
@@ -38,10 +37,10 @@ void inicia(char primeiroJogador) {
     while (1) {
         desenha(&tab);
 
-        if (jogadorAtual == jogadorHumano.tipo) {
-            joga(&tab, jogadorHumano.tipo);
+        if (jogadorAtual == jogadorHumano) {
+            joga(&tab, jogadorHumano);
         } else {
-            jogaIA(&tab, jogadorIA.tipo, jogadorHumano.tipo);
+            jogaIA(&tab, jogadorIA, jogadorHumano);
         }
 
 
