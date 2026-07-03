@@ -3,17 +3,15 @@
 
 int regra1(Tabuleiro *tab, int tipo, int tipoHumano) {
     int i, j, k, soma;
-    int objetivos[2] = {2 * tipo, 2 * tipoHumano};
+    tipo = tipo * 2;
 
-    for (k = 0; k < 2; k++) {
-        int objetivo = objetivos[k];
-
+    for (k = 0; k < 2; k++){
         for (i = 0; i < 3; i++) {
             soma = (*tab).M[i][0] + (*tab).M[i][1] + (*tab).M[i][2];
-            if (soma == objetivo) {
+            if (soma == tipo) {
                 for (j = 0; j < 3; j++) {
                     if (posicaoDisponivel(tab, i, j)) {
-                        marcaJogada(tab, i, j, tipo);
+                        marcaJogada(tab, i, j, tipo / 2);
                         return 1;
                     }
                 }
@@ -22,10 +20,10 @@ int regra1(Tabuleiro *tab, int tipo, int tipoHumano) {
 
         for (j = 0; j < 3; j++) {
             soma = (*tab).M[0][j] + (*tab).M[1][j] + (*tab).M[2][j];
-            if (soma == objetivo) {
+            if (soma == tipo) {
                 for (i = 0; i < 3; i++) {
                     if (posicaoDisponivel(tab, i, j)) {
-                        marcaJogada(tab, i, j, tipo);
+                        marcaJogada(tab, i, j, tipo / 2);
                         return 1;
                     }
                 }
@@ -33,24 +31,26 @@ int regra1(Tabuleiro *tab, int tipo, int tipoHumano) {
         }
 
         soma = (*tab).M[0][0] + (*tab).M[1][1] + (*tab).M[2][2];
-        if (soma == objetivo) {
+        if (soma == tipo) {
             for (i = 0; i < 3; i++) {
                 if (posicaoDisponivel(tab, i, i)) {
-                    marcaJogada(tab, i, i, tipo);
+                    marcaJogada(tab, i, i, tipo / 2);
                     return 1;
                 }
             }
         }
 
         soma = (*tab).M[0][2] + (*tab).M[1][1] + (*tab).M[2][0];
-        if (soma == objetivo) {
+        if (soma == tipo) {
             for (i = 0; i < 3; i++) {
                 if (posicaoDisponivel(tab, i, 2 - i)) {
-                    marcaJogada(tab, i, 2 - i, tipo);
+                    marcaJogada(tab, i, 2 - i, tipo / 2);
                     return 1;
                 }
             }
         }
+        
+        tipo = tipoHumano * 2;
     }
     return 0; 
 }
