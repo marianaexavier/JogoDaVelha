@@ -4,7 +4,7 @@
 #include "Tabuleiro.h"
 
 int regra1(Tabuleiro *tab, int tipo, int tipoHumano);
-int regra2(Tabuleiro *tab, int tipo, int tipoHumano);
+int regra2(Tabuleiro *tab, int tipo);
 int regra3(Tabuleiro *tab, int tipo);
 int regra4(Tabuleiro *tab, int tipo, int tipoHumano);
 int regra5(Tabuleiro *tab, int tipo);
