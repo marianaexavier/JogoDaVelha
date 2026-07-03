@@ -5,31 +5,15 @@
 
 void configuraJogadores(int *escolha, char *primeiroJogador) {
     printf("==== JOGO DA VELHA ====\n");
-    printf("(1) JOGAR LOCALMENTE\n");
-    printf("(2) JOGAR CONTRA UMA IA\n");
-    printf("(3) JOGAR REMOTAMENTE\n");
 
     do {
-        printf("\nDigite sua escolha: ");
-        scanf("%d", escolha);
+        printf("Qual jogador ira comecar (X ou O)? ");
+        scanf(" %c", primeiroJogador);
 
-        if (*escolha != 1 && *escolha != 2) {
+        if (*primeiroJogador != 'X' && *primeiroJogador != 'O') {
             printf("\nEscolha invalida. Tente Novamente.\n");
         }
-    } while (*escolha != 1 && *escolha != 2);
-
-    switch(*escolha) {
-        case 1:
-        do {
-            printf("\nQual jogador ira comecar (X ou O)? ");
-            scanf(" %c", primeiroJogador);
-
-            if (*primeiroJogador != 'X' && *primeiroJogador != 'O') {
-                printf("\nEscolha invalida. Tente Novamente.\n");
-            }
-        } while (*primeiroJogador != 'X' && *primeiroJogador != 'O');
-        break;
-    }    
+    } while (*primeiroJogador != 'X' && *primeiroJogador != 'O');
 }
 
 void inicia(int escolha, char primeiroJogador) {
@@ -47,12 +31,7 @@ void inicia(int escolha, char primeiroJogador) {
 
     while (1) {
         desenha(&tab);
-
-        switch(escolha) {
-            case 1:
-            joga(&tab, jogadorAtual.tipo);
-            break;
-        }
+        joga(&tab, jogadorAtual.tipo);
 
         vencedor = temVencedor(&tab);
         if (vencedor == X) {
