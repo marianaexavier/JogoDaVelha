@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 #include "Partida.h"
 #include "Tabuleiro.h"
 #include "JogadorTeclado.h"
@@ -40,6 +41,8 @@ void inicia(char primeiroJogador) {
         if (jogadorAtual == jogadorHumano) {
             joga(&tab, jogadorHumano);
         } else {
+            printf ("IA pensando...\n");
+            sleep(1);
             jogaIA(&tab, jogadorIA, jogadorHumano);
         }
 
