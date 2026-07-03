@@ -3,7 +3,8 @@
 
 int regra1(Tabuleiro *tab, int tipo, int tipoHumano) {
     int i, j, k, soma;
-    tipo = tipo * 2;
+    int tipoIA = tipo;
+    tipo = tipoIA * 2;
 
     for (k = 0; k < 2; k++){
         for (i = 0; i < 3; i++) {
@@ -11,7 +12,7 @@ int regra1(Tabuleiro *tab, int tipo, int tipoHumano) {
             if (soma == tipo) {
                 for (j = 0; j < 3; j++) {
                     if (posicaoDisponivel(tab, i, j)) {
-                        marcaJogada(tab, i, j, tipo / 2);
+                        marcaJogada(tab, i, j, tipoIA);
                         return 1;
                     }
                 }
@@ -23,7 +24,7 @@ int regra1(Tabuleiro *tab, int tipo, int tipoHumano) {
             if (soma == tipo) {
                 for (i = 0; i < 3; i++) {
                     if (posicaoDisponivel(tab, i, j)) {
-                        marcaJogada(tab, i, j, tipo / 2);
+                        marcaJogada(tab, i, j, tipoIA);
                         return 1;
                     }
                 }
@@ -34,7 +35,7 @@ int regra1(Tabuleiro *tab, int tipo, int tipoHumano) {
         if (soma == tipo) {
             for (i = 0; i < 3; i++) {
                 if (posicaoDisponivel(tab, i, i)) {
-                    marcaJogada(tab, i, i, tipo / 2);
+                    marcaJogada(tab, i, i, tipoIA);
                     return 1;
                 }
             }
@@ -44,12 +45,12 @@ int regra1(Tabuleiro *tab, int tipo, int tipoHumano) {
         if (soma == tipo) {
             for (i = 0; i < 3; i++) {
                 if (posicaoDisponivel(tab, i, 2 - i)) {
-                    marcaJogada(tab, i, 2 - i, tipo / 2);
+                    marcaJogada(tab, i, 2 - i, tipoIA);
                     return 1;
                 }
             }
         }
-        
+
         tipo = tipoHumano * 2;
     }
     return 0; 
@@ -82,8 +83,8 @@ int regra2(Tabuleiro *tab, int tipo) {
                 if (contSequencias >= 2) {
                     marcaJogada(tab, i, j, tipo);
                     return 1;
-                } 
-            } 
+                }
+            }
         }
     } return 0;
 }
