@@ -7,13 +7,13 @@
 void configuraJogadores(JogadorRemoto *jr, int tipo) {
     if (tipo == X) {
         printf("==== JOGO DA VELHA (SERVIDOR) ====\n");
-        printf("Voce eh o Jogador X. Aguardando oponente...\n");
+        printf("Voce eh o Jogador 'X'. Aguardando oponente...\n");
         aceitaConexao(jr);
     }
 
     if (tipo == O) {
         printf("==== JOGO DA VELHA (CLIENTE) ====\n");
-        printf("Voce eh o Jogador O. Conectando...\n");
+        printf("Voce eh o Jogador 'O'. Conectando...\n");
         conectaServidor(jr, "127.0.0.1");
     }
 }
@@ -30,7 +30,7 @@ void inicia(JogadorRemoto *jr, int tipo) {
         if (jogadorAtual == tipo) {
             joga(&tab, jogadorAtual, jr);
         } else {
-            jogaRemoto(jr, jogadorAtual, tipo);
+            jogaRemoto(jr, &tab, jogadorAtual);
         }
 
         vencedor = temVencedor(&tab);
@@ -58,4 +58,6 @@ void inicia(JogadorRemoto *jr, int tipo) {
             jogadorAtual = X;
         }
     }
+
+    fechaConexao(jr);
 }

@@ -12,5 +12,6 @@ void aceitaConexao(JogadorRemoto *jr);
 void conectaServidor(JogadorRemoto *jr, char *ip);
 void enviaJogada(JogadorRemoto *jr, int linha, int coluna);
 void jogaRemoto(JogadorRemoto *jr, Tabuleiro *tab, int tipo);
+void fechaConexao(JogadorRemoto *jr);
 
 #endif

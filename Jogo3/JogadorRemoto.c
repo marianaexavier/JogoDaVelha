@@ -33,8 +33,6 @@ void aceitaConexao(JogadorRemoto *jr) {
         exit(EXIT_FAILURE);
     }
 
-    printf("Servidor aguardando conexao na porta %d...\n", porta);
-
     cliente_fd = accept(servidor_fd, (struct sockaddr *)&endereco, &endereco_len);
     if (cliente_fd < 0) {
         perror("Erro no accept");
@@ -49,11 +47,11 @@ void aceitaConexao(JogadorRemoto *jr) {
     close(servidor_fd);
 }
 
-void conectaServidor(JogadorRemoto *jr, const char *ip) {
+void conectaServidor(JogadorRemoto *jr, char *ip) {
     struct sockaddr_in endereco;
 
     if ((jr->socketFd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-        perror("Erro na criação do socket");
+        perror("Erro na criacao do socket");
         exit(EXIT_FAILURE);
     }
 
@@ -61,7 +59,7 @@ void conectaServidor(JogadorRemoto *jr, const char *ip) {
     endereco.sin_port = htons(porta);
 
     if (inet_pton(AF_INET, ip, &endereco.sin_addr) <= 0) {
-        perror("Endereço de IP inválido ou não suportado");
+        perror("Endereço de IP invalido ou nao suportado");
         close(jr->socketFd);
         exit(EXIT_FAILURE);
     }
@@ -89,7 +87,7 @@ void enviaJogada(JogadorRemoto *jr, int linha, int coluna) {
 void jogaRemoto(JogadorRemoto *jr, Tabuleiro *tab, int tipo) {
     int jogada[2];
     
-    printf("\nAguardando a jogada do adversário...\n");
+    printf("\nAguardando a jogada do adversario...\n");
     if (recv(jr->socketFd, jogada, sizeof(jogada), 0) <= 0) {
         perror("Erro: A conexao com o adversario caiu");
         exit(EXIT_FAILURE);
@@ -99,5 +97,9 @@ void jogaRemoto(JogadorRemoto *jr, Tabuleiro *tab, int tipo) {
     int coluna = jogada[1];
 
     marcaJogada(tab, linha, coluna, tipo);    
-    printf("O jogador 'O' marcou em: Linha %d, Coluna %d\n", linha, coluna);
+    printf("O jogador adversario marcou em: Linha %d, Coluna %d\n", linha, coluna);
+}
+
+void fechaConexao(JogadorRemoto *jr) {
+    close(jr->socketFd);
 }
