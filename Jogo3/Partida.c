@@ -4,12 +4,21 @@
 #include "JogadorTeclado.h"
 #include "JogadorRemoto.h"
 
-void configuraJogadores() {
-    printf("==== JOGO DA VELHA (REMOTO))===\n");
-
+void configuraJogadores(JogadorRemoto *jr, int tipo) {
+    if (tipo == X) {
+        printf("==== JOGO DA VELHA (SERVIDOR) ====\n");
+        printf("Voce eh o Jogador X. Aguardando oponente...\n");
+        aceitaConexao(jr, 8080);
+    }
+    
+    if (tipo == O) {
+        printf("==== JOGO DA VELHA (CLIENTE) ====\n");
+        printf("Voce eh o Jogador O. Conectando...\n");
+        conectaServidor(jr, "127.0.0.1", 8080);
+    }
 }
 
-void inicia() {
+void inicia(JogadorRemoto *jr, int tipo) {
     Tabuleiro tab;
     int jogadorAtual = X, vencedor;
 
@@ -18,11 +27,7 @@ void inicia() {
     while (1) {
         desenha(&tab);
 
-        if (jogadorAtual == X) {
-            
-        } else {
-            
-        }
+        
 
 
         vencedor = temVencedor(&tab);

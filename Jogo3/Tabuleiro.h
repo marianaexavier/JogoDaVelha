@@ -10,7 +10,6 @@ typedef enum {
 
 typedef struct {
     int M[3][3];
-    int totalJogadas;
 } Tabuleiro;
  
 void inicializaTabuleiro(Tabuleiro *tab);
