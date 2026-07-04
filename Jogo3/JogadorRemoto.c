@@ -69,10 +69,35 @@ void conectaServidor(JogadorRemoto *jr, const char *ip, int porta) {
     printf("Tentando conectar ao servidor %s na porta %d...\n", ip, porta);
 
     if (connect(jr->socketFd, (struct sockaddr *)&endereco, sizeof(endereco)) < 0) {
-        perror("Erro ao conectar no servidor. Ele está rodando?");
+        perror("Erro ao conectar no servidor.");
         close(jr->socketFd);
         exit(EXIT_FAILURE);
     }
 
     printf("Conectado ao servidor com sucesso!\n");
+}
+
+void enviaJogada(JogadorRemoto *jr, int linha, int coluna) {
+    int jogada[2] = {linha, coluna};
+
+    if (send(jr->socketFd, jogada, sizeof(jogada), 0) < 0) {
+        perror("Erro ao enviar a jogada");
+        exit(EXIT_FAILURE);
+    }
+}
+
+void jogaRemoto(JogadorRemoto *jr, Tabuleiro *tab, int tipo) {
+    int jogada[2];
+    
+    printf("\nAguardando a jogada do adversário...\n");
+    if (recv(jr->socketFd, jogada, sizeof(jogada), 0) <= 0) {
+        perror("Erro: A conexao com o adversario caiu");
+        exit(EXIT_FAILURE);
+    }
+
+    int linha = jogada[0];
+    int coluna = jogada[1];
+
+    marcaJogada(tab, linha, coluna, tipo);    
+    printf("O jogador 'O' marcou em: Linha %d, Coluna %d\n", linha, coluna);
 }

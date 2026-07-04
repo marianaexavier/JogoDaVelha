@@ -10,7 +10,7 @@ void configuraJogadores(JogadorRemoto *jr, int tipo) {
         printf("Voce eh o Jogador X. Aguardando oponente...\n");
         aceitaConexao(jr, 8080);
     }
-    
+
     if (tipo == O) {
         printf("==== JOGO DA VELHA (CLIENTE) ====\n");
         printf("Voce eh o Jogador O. Conectando...\n");
@@ -27,8 +27,11 @@ void inicia(JogadorRemoto *jr, int tipo) {
     while (1) {
         desenha(&tab);
 
-        
-
+        if (jogadorAtual == tipo) {
+            joga(&tab, jogadorAtual);
+        } else {
+            jogaRemoto(jr, jogadorAtual);
+        }
 
         vencedor = temVencedor(&tab);
         if (vencedor == X) {
