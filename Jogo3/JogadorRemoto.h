@@ -2,7 +2,7 @@
 #define JOGADORREMOTO_H
 #include "Tabuleiro.h"
 
-#define porta 8080
+#define PORTA 8080
 
 typedef struct {
     int socketFd;

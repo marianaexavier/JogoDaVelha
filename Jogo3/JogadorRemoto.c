@@ -17,9 +17,14 @@ void aceitaConexao(JogadorRemoto *jr) {
         exit(EXIT_FAILURE);
     }
 
+    if (setsockopt(servidor_fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt))) {
+        perror("Erro ao configurar SO_REUSEADDR");
+        exit(EXIT_FAILURE);
+    }
+
     endereco.sin_family = AF_INET;
     endereco.sin_addr.s_addr = INADDR_ANY;
-    endereco.sin_port = htons(porta);
+    endereco.sin_port = htons(PORTA);
 
     if (bind(servidor_fd, (struct sockaddr *)&endereco, sizeof(endereco)) < 0) {
         perror("Erro no bind");
@@ -41,6 +46,7 @@ void aceitaConexao(JogadorRemoto *jr) {
     }
 
     printf("Cliente conectado!\n");
+    sleep(2);
 
     jr->socketFd = cliente_fd;
 
@@ -56,7 +62,7 @@ void conectaServidor(JogadorRemoto *jr, char *ip) {
     }
 
     endereco.sin_family = AF_INET;
-    endereco.sin_port = htons(porta);
+    endereco.sin_port = htons(PORTA);
 
     if (inet_pton(AF_INET, ip, &endereco.sin_addr) <= 0) {
         perror("Endereço de IP invalido ou nao suportado");
@@ -64,7 +70,7 @@ void conectaServidor(JogadorRemoto *jr, char *ip) {
         exit(EXIT_FAILURE);
     }
 
-    printf("Tentando conectar ao servidor %s na porta %d...\n", ip, porta);
+    printf("Tentando conectar ao servidor %s na porta %d...\n", ip, PORTA);
 
     if (connect(jr->socketFd, (struct sockaddr *)&endereco, sizeof(endereco)) < 0) {
         perror("Erro ao conectar no servidor.");
@@ -73,6 +79,7 @@ void conectaServidor(JogadorRemoto *jr, char *ip) {
     }
 
     printf("Conectado ao servidor com sucesso!\n");
+    sleep(2);
 }
 
 void enviaJogada(JogadorRemoto *jr, int linha, int coluna) {
