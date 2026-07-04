@@ -10,6 +10,7 @@ void aceitaConexao(JogadorRemoto *jr) {
     int servidor_fd, cliente_fd;
     struct sockaddr_in endereco;
     socklen_t endereco_len = sizeof(endereco);
+    int opt = 1;
 
     servidor_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (servidor_fd < 0) {
