@@ -6,7 +6,7 @@
 #include "JogadorRemoto.h"
 #include "Tabuleiro.h"
 
-void aceitaConexao(JogadorRemoto *jr, int porta) {
+void aceitaConexao(JogadorRemoto *jr) {
     int servidor_fd, cliente_fd;
     struct sockaddr_in endereco;
     socklen_t endereco_len = sizeof(endereco);
@@ -49,7 +49,7 @@ void aceitaConexao(JogadorRemoto *jr, int porta) {
     close(servidor_fd);
 }
 
-void conectaServidor(JogadorRemoto *jr, const char *ip, int porta) {
+void conectaServidor(JogadorRemoto *jr, const char *ip) {
     struct sockaddr_in endereco;
 
     if ((jr->socketFd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
