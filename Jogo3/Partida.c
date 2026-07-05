@@ -4,7 +4,7 @@
 #include "JogadorTeclado.h"
 #include "JogadorRemoto.h"
 
-void configuraJogadores(JogadorRemoto *jr, int tipo) {
+void configuraJogadores(JogadorRemoto *jr, int tipo, char *ip) {
     if (tipo == X) {
         printf("==== JOGO DA VELHA (SERVIDOR) ====\n");
         printf("Voce eh o Jogador 'X'. Aguardando oponente...\n");
@@ -14,7 +14,7 @@ void configuraJogadores(JogadorRemoto *jr, int tipo) {
     if (tipo == O) {
         printf("==== JOGO DA VELHA (CLIENTE) ====\n");
         printf("Voce eh o Jogador 'O'. Conectando...\n");
-        conectaServidor(jr, "127.0.0.1");
+        conectaServidor(jr, ip);
     }
 }
 
