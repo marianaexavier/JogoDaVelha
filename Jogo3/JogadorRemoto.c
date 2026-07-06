@@ -49,7 +49,6 @@ void aceitaConexao(JogadorRemoto *jr) {
     char *ip_jogador = inet_ntoa(endereco.sin_addr);
 
     printf("Cliente conectado dentro do IP: %s!\n", ip_jogador);
-    sleep(2);
 
     jr->socketFd = cliente_fd;
 
