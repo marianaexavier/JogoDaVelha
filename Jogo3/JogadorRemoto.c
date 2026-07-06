@@ -48,7 +48,7 @@ void aceitaConexao(JogadorRemoto *jr) {
 
     char *ip_jogador = inet_ntoa(endereco.sin_addr);
 
-    printf("Cliente conectado denrtro do IP: %s!\n", ip_jogador);
+    printf("Cliente conectado dentro do IP: %s!\n", ip_jogador);
     sleep(2);
 
     jr->socketFd = cliente_fd;
@@ -88,7 +88,7 @@ void conectaServidor(JogadorRemoto *jr, char *ip) {
 void enviaJogada(JogadorRemoto *jr, int linha, int coluna) {
     int jogada[2] = {linha, coluna};
 
-    if (send(jr->socketFd, jogada, sizeof(jogada), 0) < 0) {
+    if (send(jr->socketFd, jogada,  sizeof(jogada), 0) < 0) {
         perror("Erro ao enviar a jogada");
         exit(EXIT_FAILURE);
     }
