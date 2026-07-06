@@ -5,7 +5,7 @@
 
 int main(int argc, char *argv[]) {
     if (argc < 2) {
-        printf("Errro! Uso correto: %s <IP_DO_SERVIDOR>\n", argv[0]);
+        printf("Erro! Uso correto: %s <IP_DO_SERVIDOR>\n", argv[0]);
         printf("Exemplo: %s 192.168.1.5\n", argv[0]);
         return 1;
     }

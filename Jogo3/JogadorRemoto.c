@@ -48,7 +48,7 @@ void aceitaConexao(JogadorRemoto *jr) {
 
     char *ip_jogador = inet_ntoa(endereco.sin_addr);
 
-    printf("Cliente conectado denrtro do IP: %s!\n", ip_jogador);
+    printf("Cliente conectado dentro do IP: %s!\n", ip_jogador);
     sleep(2);
 
     jr->socketFd = cliente_fd;
@@ -106,8 +106,7 @@ void jogaRemoto(JogadorRemoto *jr, Tabuleiro *tab, int tipo) {
     int linha = jogada[0];
     int coluna = jogada[1];
 
-    marcaJogada(tab, linha, coluna, tipo);    
-    printf("O jogador adversario marcou em: Linha %d, Coluna %d\n", linha, coluna);
+    marcaJogada(tab, linha, coluna, tipo);
 }
 
 void fechaConexao(JogadorRemoto *jr) {
