@@ -1,4 +1,0 @@
- Copilação Servidor:
- gcc JogadorRemoto.c JogadorTeclado.c Partida.c Tabuleiro.c main_servidor.c -o jogo_serv
- Compilação cliente:
- gcc JogadorRemoto.c JogadorTeclado.c Partida.c Tabuleiro.c main_cliente.c -o jogo_cliente
