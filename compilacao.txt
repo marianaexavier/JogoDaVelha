@@ -1,4 +1,4 @@
-Copilação Jogo1:
+Compilação Jogo1:
 gcc main.c Partida.c JogadorTeclado.c Tabuleiro.c -o Jogo1
 
 Compilação Jogo2:
